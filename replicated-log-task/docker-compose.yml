@@ -1,0 +1,29 @@
+version: '3'
+services:
+  master:
+    build:
+      context: ./master
+    ports:
+      - "5000:5000"
+    networks:
+      - replicated-log-network
+
+  secondary1:
+    build:
+      context: ./secondary
+    ports:
+      - "5001:5000"
+    networks:
+      - replicated-log-network
+
+  secondary2:
+    build:
+      context: ./secondary
+    ports:
+      - "5002:5000"
+    networks:
+      - replicated-log-network
+
+networks:
+  replicated-log-network:
+    driver: bridge
